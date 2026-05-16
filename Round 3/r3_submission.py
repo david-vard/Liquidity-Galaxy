@@ -52,7 +52,6 @@ class Trader:
         "VEV_6500",
     ]
 
-    # First trough timing. Same as V2.
     FLIP_LONG_TIMES = {
         "VELVETFRUIT_EXTRACT": 59200,
         "VEV_4000": 58800,
@@ -65,8 +64,6 @@ class Trader:
         "VEV_5500": 58800,
     }
 
-    # Second peak timing.
-    # We reverse only products where the V2 log showed a positive improvement from doing so.
     SECOND_REVERSAL_TIME = 84700
     SECOND_REVERSAL_PRODUCTS = {
         "VELVETFRUIT_EXTRACT",
@@ -77,9 +74,6 @@ class Trader:
         "VEV_5400",
     }
 
-    # Do NOT reverse these after the recovery peak.
-    # VEV_4000 and VEV_4500 were hurt by the second reversal due to spread and deep ITM behaviour.
-    # VEV_5500 also did not benefit enough.
     HOLD_LONG_AFTER_TROUGH = {
         "VEV_4000",
         "VEV_4500",
@@ -168,13 +162,7 @@ class Trader:
         order_depth: OrderDepth,
         current_position: int,
     ) -> List[Order]:
-        """
-        Very small optional improvement for VEV_6000 and VEV_6500.
-
-        Historically these sit around 0.5 with a 0/1 book.
-        Buying at 0 or selling at 1 is favourable versus a 0.5 liquidation mark.
-        This does not cross the spread.
-        """
+        
         orders: List[Order] = []
 
         if product not in {"VEV_6000", "VEV_6500"}:
