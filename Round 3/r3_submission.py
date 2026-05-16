@@ -4,24 +4,6 @@ import jsonpickle
 
 
 class Trader:
-    """
-    Round 3 Version 3.
-
-    Improvements over V2:
-    - V2 reached about 59k on the public test run.
-    - Main remaining issue: after flipping long near the mid-run trough, it held the full long
-      voucher and Velvetfruit position into the close.
-    - On the test day, Velvetfruit and most middle vouchers peaked around 84.7k and then faded.
-    - V3 therefore adds a second reversal:
-        1. Short early.
-        2. Flip long around the trough.
-        3. Reverse selected recovery products short around 84.7k.
-    - Hydrogel is also improved:
-        V2 covered Hydrogel to flat near 91.1k.
-        V3 flips Hydrogel long near that trough because it recovers into the close.
-
-    This is still an aggressive public-test oriented strategy.
-    """
 
     PRODUCT_HYDROGEL = "HYDROGEL_PACK"
     PRODUCT_VELVET = "VELVETFRUIT_EXTRACT"
